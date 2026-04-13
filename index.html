@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жизнь на дистанте</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Arial', sans-serif; }
+        body { background: linear-gradient(135deg, #1a1e2a 0%, #2a3142 100%); min-height: 100vh; color: #eee; }
+        .app { max-width: 1200px; margin: 0 auto; }
+
+        /* Шапка */
+        header { background: rgba(15, 18, 25, 0.95); border-bottom: 2px solid #2d8cff; padding: 10px 20px; backdrop-filter: blur(10px); }
+        .header-container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; }
+        .logo a { display: flex; align-items: center; text-decoration: none; color: white; cursor: pointer; }
+        .logo-icon { font-size: 2.5rem; margin-right: 10px; }
+        .logo span { font-weight: bold; font-size: 1.5rem; color: #2d8cff; }
+
+        /* Меню */
+        nav ul { display: flex; list-style: none; gap: 8px; flex-wrap: wrap; }
+        nav ul li a { color: #ccc; text-decoration: none; padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        nav ul li a:hover, nav ul li a.active { background: #2d8cff; color: white; }
+
+        /* Хлебные крошки */
+        .breadcrumbs { margin: 15px 20px; color: #aaa; font-size: 0.9rem; }
+        .breadcrumbs a { color: #2d8cff; cursor: pointer; text-decoration: none; }
+        .breadcrumbs a:hover { text-decoration: underline; }
+
+        /* Страницы */
+        .page { padding: 20px; display: none; }
+        .page.active { display: block; }
+        h1 { color: white; margin-bottom: 20px; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        h2 { color: white; margin: 25px 0 15px; }
+        h3 { color: #2d8cff; margin-bottom: 15px; }
+
+        /* Рабочий стол */
+        .desktop { background: linear-gradient(135deg, #1e2433 0%, #242937 100%); border-radius: 24px; padding: 30px 20px; box-shadow: inset 0 0 20px #00000055, 0 10px 30px #00000080; border: 1px solid #3a4358; display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 25px 15px; justify-items: center; }
+        .app-icon { text-align: center; cursor: pointer; padding: 10px; border-radius: 16px; transition: 0.2s; }
+        .app-icon:hover { transform: scale(1.05); background: rgba(45, 140, 255, 0.15); }
+        .icon-emoji { font-size: 4rem; line-height: 1.2; filter: drop-shadow(0 4px 6px black); margin-bottom: 8px; }
+        .app-icon span { display: block; font-weight: 500; text-shadow: 1px 1px 2px black; }
+
+        /* Блоки контента */
+        .content-block { background: #242937; border-radius: 20px; padding: 25px; margin-bottom: 25px; }
+        .row { display: flex; gap: 20px; flex-wrap: wrap; }
+        .col { flex: 1; min-width: 250px; }
+        .image-placeholder { background: linear-gradient(145deg, #1e2433, #2a3142); border-radius: 16px; padding: 40px 20px; text-align: center; margin: 15px 0; border: 2px dashed #3a4358; }
+        .image-placeholder span { font-size: 4rem; display: block; margin-bottom: 10px; }
+        .image-caption { font-size: 0.9rem; color: #aaa; margin-top: 5px; text-align: center; }
+
+        /* Таблицы */
+        table { width: 100%; border-collapse: collapse; background: #1e2433; border-radius: 12px; overflow: hidden; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        th { background: #2d8cff; padding: 12px; text-align: left; }
+        td { padding: 10px 12px; border-bottom: 1px solid #3a4358; }
+        tr:last-child td { border-bottom: none; }
+
+        /* Игры */
+        .games-grid { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin: 30px 0; }
+        .game-card { background: #242937; border-radius: 24px; padding: 25px; text-align: center; width: 200px; cursor: pointer; transition: 0.2s; }
+        .game-card:hover { background: #2d3a52; transform: translateY(-5px); }
+        .game-card .icon-emoji { font-size: 5rem; }
+        .game-card h3 { color: white; margin: 15px 0 5px; }
+
+        /* Новости */
+        .news-item { background: #242937; border-radius: 20px; padding: 20px; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+        .news-item .icon-emoji { font-size: 3rem; min-width: 80px; text-align: center; }
+
+        /* Галерея */
+        .gallery { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; background: #242937; border-radius: 24px; padding: 30px; }
+        .gallery figure { width: 250px; text-align: center; }
+        .gallery .image-placeholder { margin: 0; padding: 30px 10px; cursor: pointer; }
+        .gallery figcaption { margin-top: 10px; color: #ccc; }
+
+        /* YouTube */
+        .youtube-grid { display: flex; gap: 25px; flex-wrap: wrap; justify-content: center; background: #242937; padding: 25px; border-radius: 24px; }
+        .video-card { width: 200px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .video-card:hover { transform: scale(1.05); }
+        .video-card .image-placeholder { margin: 0 0 10px 0; padding: 40px 10px; }
+        .video-card p { color: white; }
+
+        /* Музыкальный плеер */
+        .player { background: #242937; border-radius: 28px; padding: 30px; text-align: center; }
+        audio { width: 100%; margin: 20px 0; }
+        .playlist { list-style: none; text-align: left; margin-top: 20px; }
+        .playlist li { padding: 12px 15px; margin: 5px 0; background: #1e2433; border-radius: 12px; cursor: pointer; transition: 0.2s; }
+        .playlist li:hover { background: #2d8cff; }
+
+        /* Подвал */
+        footer { background: #0f1219; color: #aaa; padding: 20px; margin-top: 30px; border-top: 1px solid #2d8cff; }
+        .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 20px; }
+        .footer-section { min-width: 150px; }
+        .footer-section h4 { color: white; margin-bottom: 10px; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 5px; }
+        .footer-section a { color: #2d8cff; text-decoration: none; cursor: pointer; }
+        .copyright { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666; }
+
+        /* Типографика */
+        strong { color: #ffd966; }
+        em { color: #9cd9ff; font-style: italic; }
+        .note { color: #aaa; margin-top: 20px; font-style: italic; }
+        .back-link { margin-top: 20px; }
+        .back-link a { color: #2d8cff; cursor: pointer; text-decoration: none; }
+        ul:not(nav ul):not(.footer-section ul):not(.playlist) { margin-left: 20px; line-height: 1.8; }
+    </style>
+</head>
+<body>
+<div class="app">
+    <!-- ШАПКА -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a onclick="showPage('home')">
+                    <span class="logo-icon">🖥️</span>
+                    <span>Жизнь на дистанте</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a onclick="showPage('home')" id="nav-home" class="active">Главная</a></li>
+                    <li><a onclick="showPage('zoom')" id="nav-zoom">Zoom</a></li>
+                    <li><a onclick="showPage('games')" id="nav-games">Игры</a></li>
+                    <li><a onclick="showPage('news')" id="nav-news">Новости</a></li>
+                    <li><a onclick="showPage('yandex')" id="nav-yandex">Яндекс.Еда</a></li>
+                    <li><a onclick="showPage('music')" id="nav-music">Музыка</a></li>
+                    <li><a onclick="showPage('gallery')" id="nav-gallery">Галерея</a></li>
+                    <li><a onclick="showPage('youtube')" id="nav-youtube">YouTube</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs" id="breadcrumbs">
+        <a onclick="showPage('home')">Главная</a> » <span id="current-page">Рабочий стол</span>
+    </div>
+
+    <!-- ==================== ГЛАВНАЯ (РАБОЧИЙ СТОЛ) ==================== -->
+    <div id="page-home" class="page active">
+        <h1>👋 Добро пожаловать на дистант</h1>
+        <div class="desktop">
+            <div class="app-icon" onclick="showPage('zoom')"><img src="images/zoom.png" alt="Zoom" class="icon-img" width="80px" height="80px"><span>Zoom</span></div>
+            <div class="app-icon" onclick="showPage('games')"><div class="icon-emoji">🎮</div><span>Игры</span></div>
+            <div class="app-icon" onclick="showPage('news')"><div class="icon-emoji">📰</div><span>Новости</span></div>
+            <div class="app-icon" onclick="showPage('youtube')"><img src="images/youtube.png" alt="YouTube" class="icon-img" width="80px" height="80px"><span>YouTube</span></div>
+            <div class="app-icon" onclick="showPage('yandex')"><img src="images/yandex_eda.png" alt="Yandex_eda" class="icon-img" width="80px" height="80px"><span>Яндекс.Еда</span></div>
+            <div class="app-icon" onclick="showPage('music')"><div class="icon-emoji">🎵</div><span>Музыка</span></div>
+            <div class="app-icon" onclick="showPage('gallery')"><div class="icon-emoji">🖼️</div><span>Галерея</span></div>
+        </div>
+        <p class="note"><i>Кликните на иконку, чтобы открыть приложение.</i></p>
+
+        <h2>📊 Статистика дистанта 2020</h2>
+        <table>
+            <tr><th>Показатель</th><th>Март 2020</th><th>Сентябрь 2020</th></tr>
+            <tr><td>Пользователи Zoom (млн/день)</td><td>10</td><td>300</td></tr>
+            <tr><td>Заказы доставки еды (рост)</td><td>+20%</td><td>+150%</td></tr>
+            <tr><td>Просмотры YouTube (млрд/день)</td><td>1.5</td><td>2.8</td></tr>
+        </table>
+    </div>
+
+    <!-- ==================== ZOOM ==================== -->
+    <div id="page-zoom" class="page">
+        <h1><img src="images/zoom.png" alt="Zoom" class="icon-img" width="40px" height="40px"> Zoom и школьники на дистанте</h1>
+        <div class="content-block">
+            <div class="row">
+                <div class="col">
+                    <p><strong>Zoom</strong> стал <em>главным окном в мир учебы</em> для миллионов школьников в 2020 году. До пандемии о нём знали в основном бизнесмены, но <i>локдаун превратил сервис в школьную парту</i>. <strong>В марте 2020</strong> ежедневная аудитория выросла с 10 до <strong>300 миллионов участников</strong>.</p>
+                    <p>Школьники проводили по 5-6 часов в Zoom, часто с выключенными камерами. Появились мемы про «рябь на фоне» и «сломанный микрофон». Несмотря на усталость, Zoom помог сохранить учебный процесс.</p>
+                    <p><strong>Главная мысль:</strong> <em>технологии позволили не прерывать образование в критический момент</em>.</p>
+                </div>
+                <div class="col">
+                    <div class="image-placeholder"><img src="images/ddab2818a768ea1081d12c948d5d5a54.jpg" width="450px" height = "350px"></div>
+                    <div class="image-caption"><i>Урок в Zoom</i></div>
+                </div>
+            </div>
+        </div>
+        <h2>📅 Хронология влияния на школьников</h2>
+        <table>
+            <tr><th>Период</th><th>Событие</th><th>Влияние</th></tr>
+            <tr><td>Март 2020</td><td>Массовый переход на удалёнку</td><td>Взрывной рост установок Zoom</td></tr>
+            <tr><td>Апрель 2020</td><td>Проблемы с «зумбомбингом»</td><td>Введение паролей и залов ожидания</td></tr>
+            <tr><td>Сентябрь 2020</td><td>Начало учебного года</td><td>Гибридное обучение: часть дома, часть в школе</td></tr>
+            <tr><td>Декабрь 2020</td><td>Вторая волна пандемии</td><td>Полный возврат на дистант</td></tr>
+        </table>
+        <div class="back-link"><a onclick="showPage('home')">↑ Наверх (на главную)</a></div>
+    </div>
+
+    <!-- ==================== ИГРЫ (ГЛАВНАЯ ПАПКА) ==================== -->
+    <div id="page-games" class="page">
+        <h1>🎮 Игры, покорившие карантин</h1>
+        <p style="margin-bottom:20px;">В 2020 году, когда мир заперся по домам, несколько игр стали настоящими феноменами, объединяя друзей на расстоянии.</p>
+        <div class="games-grid">
+            <div class="game-card" onclick="showGame('phasmo')">
+                <img src="images/phas.png" alt="Phas" class="icon-img" width="80px" height="80px">
+                <h3>Phasmophobia</h3>
+                <p style="color:#aaa;">Кооперативный хоррор</p>
+            </div>
+            <div class="game-card" onclick="showGame('fallguys')">
+                <img src="images/fall_guys.png" alt="Fall guys" class="icon-img" width="80px" height="80px">
+                <h3>Fall Guys</h3>
+                <p style="color:#aaa;">Королевская битва</p>
+            </div>
+            <div class="game-card" onclick="showGame('amongus')">
+                <img src="images/among_us.png" alt="Among us" class="icon-img" width="80px" height="80px">
+                <h3>Among Us</h3>
+                <p style="color:#aaa;">Социальная дедукция</p>
+            </div>
+        </div>
+        <p class="note"><i>Кликните на карточку игры, чтобы узнать подробности о её успехе во время ковида.</i></p>
+
+        <!-- Детальные страницы игр (скрыты изначально) -->
+        <div id="game-phasmo" style="display:none;">
+            <div class="content-block">
+                <div class="row">
+                    <div class="col">
+                        <h2><img src="images/phas.png" alt="Phas" class="icon-img" width="40px" height="40px"> Phasmophobia</h2>
+                        <p><strong>Phasmophobia</strong> — кооперативный хоррор от Kinetic Games, вышедший в ранний доступ в сентябре 2020 года. Игра стала <em>абсолютным феноменом Twitch и YouTube</em> именно в разгар пандемии.</p>
+                        <p>Геймплей строится вокруг команды из 4 человек, исследующих локации с призраками. <strong>Главная мысль:</strong> <i>изоляция усилила тягу к совместным переживаниям и эмоциям</i>.</p>
+                        <p>Стримеры собирали миллионы просмотров, а друзья по видеосвязи вместе кричали от страха. Пик онлайна в Steam превысил <strong>110 000 игроков</strong>.</p>
+                    </div>
+                    <div class="col">
+                        <div class="image-placeholder"><img src="images/maxresdefault.jpg"  width="500px" height = "300px">Охота на призрака</div>
+                    </div>
+                </div>
+                <table>
+                    <tr><th>Месяц 2020</th><th>Средний онлайн</th><th>Зрители на Twitch</th></tr>
+                    <tr><td>Сентябрь</td><td>45 000</td><td>150 000</td></tr>
+                    <tr><td>Октябрь</td><td>85 000</td><td>300 000</td></tr>
+                    <tr><td>Ноябрь</td><td>110 000</td><td>250 000</td></tr>
+                </table>
+                <p style="margin-top:15px;"><a onclick="showPage('games')" style="color:#2d8cff; cursor:pointer;">← Назад к списку игр</a></p>
+            </div>
+        </div>
+
+        <div id="game-fallguys" style="display:none;">
+            <div class="content-block">
+                <h2><img src="images/fall_guys.png" alt="Fall guys" class="icon-img" width="40px" height="40px"> Fall Guys: Ultimate Knockout</h2>
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Fall Guys</strong> — яркая королевская битва от Mediatonic, вышедшая в августе 2020. Игра мгновенно стала хитом благодаря <em>простому и весёлому геймплею</em>, идеально подходящему для трансляций.</p>
+                        <p>За первый месяц было продано <strong>более 7 миллионов копий</strong> на ПК, а на PlayStation Plus игра стала самой скачиваемой за всю историю сервиса.</p>
+                        <p><strong>Успех во время ковида:</strong> люди искали лёгкое развлечение без негатива, и Fall Guys с его милыми бобами идеально попал в настроение.</p>
+                    </div>
+                    <div class="col">
+                        <div class="image-placeholder"><img src="images/Fll_Guys_Fall_Force.png" width="450px" height="300px"></div>
+                        <div class="image-caption">Fall Guys — королевская битва</div>
+                    </div>
+                </div>
+                <ul>
+                    <li>Продажи за первый месяц: <strong>7+ млн копий</strong> на ПК</li>
+                    <li>Рекордный онлайн Steam: <strong>172 000 игроков</strong></li>
+                    <li>Самая скачиваемая игра PS Plus в истории</li>
+                </ul>
+                <p style="margin-top:15px;"><a onclick="showPage('games')" style="color:#2d8cff; cursor:pointer;">← Назад к списку игр</a></p>
+            </div>
+        </div>
+
+        <div id="game-amongus" style="display:none;">
+            <div class="content-block">
+                <h2>🚀 Among Us</h2>
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Among Us</strong> — игра от InnerSloth, вышедшая ещё в 2018, но ставшая <em>мировым феноменом именно в 2020 году</em> благодаря стримерам и локдауну.</p>
+                        <p>Игра о предательстве в космосе идеально подошла для онлайн-вечеринок. <strong>Главная мысль:</strong> <i>социальное взаимодействие стало главной валютой карантина</i>.</p>
+                        <p>В пике в ноябре 2020 года одновременно играло <strong>более 3 миллионов человек</strong> на всех платформах.</p>
+                    </div>
+                    <div class="col">
+                        <div class="image-placeholder"><img src="images/amoguslandscape_2560x1440-3fac17e8bb45d81ec9b2c24655758075.jpg" width="450px" height="300px">Предатель среди экипажа</div>
+                        <div class="image-caption">Among Us — социальная дедукция</div>
+                    </div>
+                </div>
+                <table>
+                    <tr><th>Период</th><th>Событие</th></tr>
+                    <tr><td>Июль 2020</td><td>Популярные стримеры начали играть</td></tr>
+                    <tr><td>Сентябрь 2020</td><td>100 млн скачиваний на мобильных</td></tr>
+                    <tr><td>Ноябрь 2020</td><td>Пик популярности, мемы про «sus»</td></tr>
+                </table>
+                <p style="margin-top:15px;"><a onclick="showPage('games')" style="color:#2d8cff; cursor:pointer;">← Назад к списку игр</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== НОВОСТИ ==================== -->
+    <div id="page-news" class="page">
+        <h1>📰 Новости ковидного времени</h1>
+        <div class="news-item">
+            <div class="icon-emoji">🦠</div>
+            <div>
+                <h3>Март 2020: ВОЗ объявила пандемию</h3>
+                <p><strong>11 марта 2020 года</strong> Всемирная организация здравоохранения официально объявила пандемию COVID-19. Школы по всему миру начали закрываться, вводится <em>режим самоизоляции</em>. Люди скупают гречку и туалетную бумагу, улицы городов пустеют.</p>
+                <div class="image-placeholder" style="padding:20px;"><img src="images/COVID-19.jpg"  width="500px" height = "300px"></div>
+            </div>
+        </div>
+        <div class="news-item">
+            <div class="icon-emoji">💉</div>
+            <div>
+                <h3>Август 2020: Регистрация «Спутник V»</h3>
+                <p>Россия первой в мире регистрирует вакцину от коронавируса — <strong>«Спутник V»</strong>. Новость вызывает <i>бурные обсуждения в мировом сообществе</i>. Школьники и студенты с надеждой ждут возвращения к нормальной жизни.</p>
+                <div class="image-placeholder" style="padding:20px;"><img src="images/1200_sputnik-5-russia.jpg"  width="500px" height = "300px"></div>
+            </div>
+        </div>
+        <div class="news-item">
+            <div class="icon-emoji">🏫</div>
+            <div>
+                <h3>Сентябрь 2020: Удалёнка навсегда?</h3>
+                <p>Начало учебного года в гибридном формате. Многие компании заявляют о продлении удалённой работы на неопределённый срок. <strong>Главная мысль:</strong> <i>мир уже никогда не будет прежним</i>, дистанционные технологии прочно вошли в жизнь.</p>
+                <div class="image-placeholder" style="padding:20px;"><img src="images/healthy-home-office-aspectos-psicologicos-del-trabajo-remoto-en-cuarentena-workana-blog-min.jpg"  width="500px" height = "300px"></div>
+            </div>
+        </div>
+        <div class="back-link"><a onclick="showPage('home')">↑ На главную</a></div>
+    </div>
+
+    <!-- ==================== ЯНДЕКС.ЕДА ==================== -->
+    <div id="page-yandex" class="page">
+        <h1><img src="images/yandex_eda.png" alt="Yandex_eda" class="icon-img" width="40px" height="40px"> Взлёт популярности доставок</h1>
+        <div class="content-block">
+            <div class="row">
+                <div class="col">
+                    <p><strong>Доставка еды стала настоящим спасением в локдаун.</strong> Сервисы вроде Яндекс.Еды и Delivery Club увеличили обороты в несколько раз. Рестораны, которые раньше никогда не занимались доставкой, экстренно подключались к агрегаторам.</p>
+                    <p>В 2020 году количество заказов в Яндекс.Еде выросло на <strong>более чем 200%</strong> по сравнению с предыдущим годом. Курьеры на велосипедах и самокатах стали неотъемлемой частью городского пейзажа.</p>
+                    <p><strong>Главная мысль:</strong> <em>бесконтактная доставка — это новая норма, которая останется с нами надолго</em>.</p>
+
+                    <h3 style="margin-top:20px;">📋 Что чаще всего заказывали в 2020:</h3>
+                    <ul>
+                        <li><strong>Пицца</strong> — классика доставки</li>
+                        <li><strong>Роллы и суши</strong> — удобно есть за просмотром сериала</li>
+                        <li><strong>Бургеры и картошка фри</strong> — comfort food</li>
+                        <li><strong>Десерты и кофе</strong> — маленькие радости на удалёнке</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <div class="image-placeholder"><img src="images/OIP.jpg" width="450px" height="350px">Курьер Яндекс.Еды</div>
+                    <div class="image-caption">Бесконтактная доставка — стандарт 2020</div>
+                    <div class="image-placeholder" style="margin-top:20px;"><img src="images/Dostavka-edy-kak-biznes-2.jpg" width="450px" height="350px">Заказ у двери</div>
+                </div>
+            </div>
+            <table style="margin-top:25px;">
+                <tr><th>Период 2020</th><th>Рост заказов (г/г)</th><th>Новые рестораны</th></tr>
+                <tr><td>Март-Апрель</td><td>+150%</td><td>+300% подключений</td></tr>
+                <tr><td>Май-Август</td><td>+200%</td><td>+500% новых партнёров</td></tr>
+                <tr><td>Сентябрь-Декабрь</td><td>+250%</td><td>Рекордное число курьеров</td></tr>
+            </table>
+        </div>
+        <div class="back-link"><a onclick="showPage('home')">↑ На главную</a></div>
+    </div>
+
+    <!-- ==================== МУЗЫКА ==================== -->
+    <div id="page-music" class="page">
+        <h1>🎵 Аудиоплеер: Хиты 2020</h1>
+        <div class="player">
+            <div class="icon-emoji" style="font-size:3rem;">🎧</div>
+            <h3 style="color:white; margin:15px 0;">Сейчас играет</h3>
+            <p id="trackName" style="color:#2d8cff; margin-bottom:15px;">The Weeknd — Blinding Lights</p>
+            <audio id="audioPlayer" controls style="width:100%;">
+                <source src="#" type="audio/mpeg">
+                Ваш браузер не поддерживает аудио.
+            </audio>
+            <p style="color:#aaa; margin-top:10px; font-style:italic;">* В демо-режиме аудиофайлы не подключены. Для реальной работы добавьте MP3 файлы.</p>
+
+            <h4 style="color:white; margin:25px 0 15px; text-align:left;">🎼 Популярные треки 2020 года:</h4>
+            <ul class="playlist">
+                <li onclick="alert('Демо-режим: The Weeknd — Blinding Lights')">🎵 The Weeknd — Blinding Lights (самый популярный трек 2020)</li>
+                <li onclick="alert('Демо-режим: Tones and I — Dance Monkey')">🎵 Tones and I — Dance Monkey</li>
+                <li onclick="alert('Демо-режим: Jawsh 685 — Savage Love')">🎵 Jawsh 685 x Jason Derulo — Savage Love</li>
+                <li onclick="alert('Демо-режим: Doja Cat — Say So')">🎵 Doja Cat — Say So</li>
+                <li onclick="alert('Демо-режим: DaBaby — ROCKSTAR')">🎵 DaBaby ft. Roddy Ricch — ROCKSTAR</li>
+                <li onclick="alert('Демо-режим: Dua Lipa — Don\'t Start Now')">🎵 Dua Lipa — Don't Start Now</li>
+            </ul>
+            <p style="color:#aaa; margin-top:20px; font-size:0.9rem;">Эти треки звучали из каждого окна во время самоизоляции и стали саундтреком 2020 года.</p>
+        </div>
+        <div class="back-link"><a onclick="showPage('home')">↑ На главную</a></div>
+    </div>
+
+    <!-- ==================== ГАЛЕРЕЯ МЕМОВ ==================== -->
+    <div id="page-gallery" class="page">
+        <h1>🖼️ Мемы карантина 2020</h1>
+        <div class="gallery">
+            <figure>
+                <div class="image-placeholder"><img src="images/908e0914cb3a916c6ece4ef3177e7289.jpg" width="150px" height="150px"></div>
+                <figcaption>Чикибамбони</figcaption>
+            </figure>
+            <figure>
+                <div class="image-placeholder"><img src="images/e57d2bf032befade9b7848d495330a2b.jpg" width="150px" height="150px"></div>
+                <figcaption>Каменное лицо</figcaption>
+            </figure>
+            <figure>
+                <div class="image-placeholder"><img src="images/7b8d43124860dc77514f38cd04987775.jpg" width="150px" height="150px"></div>
+                <figcaption>Анонимусы</figcaption>
+            </figure>
+            <figure>
+                <div class="image-placeholder"><img src="images/OIP-_1_.jpg" width="150px" height="150px"></div>
+                <figcaption>Розовый гусь</figcaption>
+            </figure>
+        </div>
+        <div class="back-link"><a onclick="showPage('home')">↑ На главную</a></div>
+    </div>
+
+    <!-- ==================== YOUTUBE ==================== -->
+    <div id="page-youtube" class="page">
+        <h1>▶️ YouTube-блогеры ковидной эпохи</h1>
+        <p style="margin-bottom:20px;">В 2020 году многие блогеры перешли на формат «домашних влогов» и прямых эфиров. Вот некоторые из них:</p>
+        <div class="youtube-grid">
+            <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+                <div class="image-placeholder"><span>🏠📹</span></div>
+                <p>Влог: «Как я переживаю карантин»</p>
+            </div>
+            <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+                <div class="image-placeholder"><span>🍳👨‍🍳</span></div>
+                <p>Готовим дома: рецепты от блогера</p>
+            </div>
+            <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+                <div class="image-placeholder"><span>💪🏠</span></div>
+                <p>Тренировки дома без инвентаря</p>
+            </div>
+            <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+                <div class="image-placeholder"><span>🎮📺</span></div>
+                <p>Стримы Among Us с друзьями</p>
+            </div>
+        </div>
+        <p class="note"><i>При клике на обложку открывается видео на YouTube (внешняя ссылка). В демо-версии ведёт на классический ролик.</i></p>
+        <div class="back-link"><a onclick="showPage('home')">↑ На главную</a></div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <footer id="contacts">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>📞 Контакты</h4>
+                <ul>
+                    <li>Email: <a>info@distante-life.ru</a></li>
+                    <li>Telegram: @distante2020</li>
+                    <li>Телефон: +7 (999) 123-45-67</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>🤝 Партнеры</h4>
+                <ul>
+                    <li><a>Zoom Video Communications</a></li>
+                    <li><a>Яндекс</a></li>
+                    <li><a>Skillbox</a></li>
+                    <li><a>Нетология</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>🗺️ Маршрут перехода</h4>
+                <ul>
+                    <li><a onclick="showPage('home')">Главная</a> » Текущая</li>
+                    <li><a onclick="showPage('zoom')">Zoom</a></li>
+                    <li><a onclick="showPage('games')">Игры</a></li>
+                    <li><a onclick="showPage('news')">Новости</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Жизнь на дистанте. Все права защищены. <strong>Главная мысль:</strong> <em>дистант изменил нас навсегда, но мы адаптировались</em>.
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Названия страниц для хлебных крошек
+    const pageNames = {
+        'home': 'Рабочий стол',
+        'zoom': 'Zoom',
+        'games': 'Игры',
+        'news': 'Новости',
+        'yandex': 'Яндекс.Еда',
+        'music': 'Музыка',
+        'gallery': 'Галерея',
+        'youtube': 'YouTube'
+    };
+
+    // Текущая открытая игра
+    let currentGame = null;
+
+    // Функция переключения страниц
+    function showPage(pageId) {
+        // Скрываем все страницы
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        // Показываем нужную
+        document.getElementById('page-' + pageId).classList.add('active');
+
+        // Если переходим на игры, скрываем детальные страницы игр
+        if (pageId === 'games') {
+            document.getElementById('game-phasmo').style.display = 'none';
+            document.getElementById('game-fallguys').style.display = 'none';
+            document.getElementById('game-amongus').style.display = 'none';
+            currentGame = null;
+        }
+
+        // Обновляем активный пункт меню
+        document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+        document.getElementById('nav-' + pageId).classList.add('active');
+
+        // Обновляем хлебные крошки
+        document.getElementById('current-page').textContent = pageNames[pageId] || pageId;
+
+        // Прокрутка наверх
+        window.scrollTo(0, 0);
+    }
+
+    // Функция показа детальной страницы игры
+    function showGame(gameId) {
+        // Скрываем все игры
+        document.getElementById('game-phasmo').style.display = 'none';
+        document.getElementById('game-fallguys').style.display = 'none';
+        document.getElementById('game-amongus').style.display = 'none';
+        // Показываем нужную
+        document.getElementById('game-' + gameId).style.display = 'block';
+        currentGame = gameId;
+
+        // Обновляем хлебные крошки для игр
+        const gameNames = { 'phasmo': 'Phasmophobia', 'fallguys': 'Fall Guys', 'amongus': 'Among Us' };
+        document.getElementById('current-page').textContent = 'Игры » ' + gameNames[gameId];
+    }
+
+    // Обработка хеша в URL для прямых ссылок
+    window.addEventListener('load', function() {
+        const hash = window.location.hash.substring(1);
+        if (hash && document.getElementById('page-' + hash)) {
+            showPage(hash);
+        }
+    });
+
+    // Сохраняем состояние в хеше
+    const originalShowPage = showPage;
+    showPage = function(pageId) {
+        window.location.hash = pageId;
+        originalShowPage(pageId);
+    };
+</script>
+</body>
+</html>
