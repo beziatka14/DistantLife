@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Музыка - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1>🎵 Аудиоплеер: Хиты 2020</h1>
+    <div class="player">
+        <div class="icon-emoji" style="font-size:3rem;">🎧</div>
+        <h3 style="color:white; margin:15px 0;">Сейчас играет</h3>
+        <p id="trackName" style="color:#2d8cff; margin-bottom:15px;">The Weeknd — Blinding Lights</p>
+        <audio id="audioPlayer" controls style="width:100%;">
+            <source src="#" type="audio/mpeg">
+            Ваш браузер не поддерживает аудио.
+        </audio>
+        <p style="color:#aaa; margin-top:10px; font-style:italic;">* В демо-режиме аудиофайлы не подключены. Для реальной работы добавьте MP3 файлы.</p>
+
+        <h4 style="color:white; margin:25px 0 15px; text-align:left;">🎼 Популярные треки 2020 года:</h4>
+        <ul class="playlist">
+            <li onclick="playDemo('The Weeknd — Blinding Lights')">🎵 The Weeknd — Blinding Lights (самый популярный трек 2020)</li>
+            <li onclick="playDemo('Tones and I — Dance Monkey')">🎵 Tones and I — Dance Monkey</li>
+            <li onclick="playDemo('Jawsh 685 x Jason Derulo — Savage Love')">🎵 Jawsh 685 x Jason Derulo — Savage Love</li>
+            <li onclick="playDemo('Doja Cat — Say So')">🎵 Doja Cat — Say So</li>
+            <li onclick="playDemo('DaBaby ft. Roddy Ricch — ROCKSTAR')">🎵 DaBaby ft. Roddy Ricch — ROCKSTAR</li>
+            <li onclick="playDemo('Dua Lipa — Don\'t Start Now')">🎵 Dua Lipa — Don't Start Now</li>
+        </ul>
+        <p style="color:#aaa; margin-top:20px; font-size:0.9rem;">Эти треки звучали из каждого окна во время самоизоляции и стали саундтреком 2020 года.</p>
+    </div>
+    <div class="back-link"><a href="{{ url_for('home') }}">↑ На главную</a></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function playDemo(trackName) {
+        document.getElementById('trackName').textContent = trackName;
+        alert('Демо-режим: ' + trackName);
+    }
+</script>
+{% endblock %}

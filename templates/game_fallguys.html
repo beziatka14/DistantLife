@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Fall Guys - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="content-block">
+        <div class="row">
+            <div class="col">
+                <h2 style="display: flex; align-items: center; gap: 10px;">
+                    <img src="{{ url_for('static', filename='images/games/fallguys.png') }}" alt="Fall Guys" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px;">
+                    Fall Guys: Ultimate Knockout
+                </h2>
+                <p><strong>Fall Guys</strong> — яркая королевская битва от Mediatonic, вышедшая в августе 2020. Игра мгновенно стала хитом благодаря <em>простому и весёлому геймплею</em>, идеально подходящему для трансляций.</p>
+                <p>До 60 игроков в виде забавных бобов соревнуются в безумных испытаниях, вдохновлённых телешоу Takeshi's Castle и Wipeout. Только один становится победителем в каждом раунде.</p>
+                <p><strong>Главная мысль:</strong> <i>люди искали лёгкое развлечение без негатива, и Fall Guys с его милыми бобами идеально попал в настроение изолированного мира</i>.</p>
+                <p>За первый месяц было продано <strong>более 7 миллионов копий</strong> на ПК, а на PlayStation Plus игра стала самой скачиваемой за всю историю сервиса.</p>
+            </div>
+            <div class="col">
+                <div class="image-placeholder">
+                    <img src="{{ url_for('static', filename='images/games/fallguys_gameplay.png') }}" alt="Fall Guys Gameplay" style="width: 100%; max-width: 500px; height: auto; border-radius: 12px;">
+                    <p style="color: #ccc; margin-top: 15px;">Гонка с препятствиями в Fall Guys</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;">🏆 Рекорды и достижения</h3>
+        <table>
+            <tr><th>Показатель</th><th>Значение</th></tr>
+            <tr><td>Продажи за первый месяц (ПК)</td><td>7+ миллионов копий</td></tr>
+            <tr><td>Рекордный онлайн Steam</td><td>172 000 игроков</td></tr>
+            <tr><td>Игроков на PS Plus</td><td>Более 20 миллионов</td></tr>
+            <tr><td>Награды</td><td>Best Community Support (The Game Awards 2020)</td></tr>
+        </table>
+
+        <h3 style="margin-top: 30px;">🎪 Что сделало игру особенной</h3>
+        <ul>
+            <li><strong>Кроссплатформенность</strong> — игра доступна на всех платформах</li>
+            <li><strong>Сезонные обновления</strong> — новые костюмы и уровни каждые 2 месяца</li>
+            <li><strong>Коллаборации</strong> — костюмы из Sonic, Godzilla, Among Us и других франшиз</li>
+            <li><strong>Простота управления</strong> — всего три кнопки: прыжок, захват, нырок</li>
+        </ul>
+
+        <p style="margin-top: 25px;"><a href="{{ url_for('games') }}" style="color:#2d8cff; text-decoration: none;">← Назад к списку игр</a></p>
+    </div>
+</div>
+{% endblock %}

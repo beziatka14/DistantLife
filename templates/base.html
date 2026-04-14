@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Жизнь на дистанте{% endblock %}</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app">
+    <!-- ШАПКА -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="{{ url_for('home') }}">
+                    <span class="logo-icon">🖥️</span>
+                    <span>Жизнь на дистанте</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    {% for item in nav_items %}
+                    <li><a href="{{ url_for(item.id) }}" {% if page_id == item.id %}class="active"{% endif %}>{{ item.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="breadcrumbs">
+        <a href="{{ url_for('home') }}">Главная</a> » <span>{{ page_name }}</span>
+    </div>
+
+    <!-- КОНТЕНТ СТРАНИЦЫ -->
+    {% block content %}{% endblock %}
+
+    <!-- ПОДВАЛ -->
+    <footer id="contacts">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>📞 Контакты</h4>
+                <ul>
+                    <li>Email: <a href="mailto:info@distante-life.ru">info@distante-life.ru</a></li>
+                    <li>Telegram: @distante2020</li>
+                    <li>Телефон: +7 (999) 123-45-67</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>🤝 Партнеры</h4>
+                <ul>
+                    <li><a href="#">Zoom Video Communications</a></li>
+                    <li><a href="#">Яндекс</a></li>
+                    <li><a href="#">Skillbox</a></li>
+                    <li><a href="#">Нетология</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>🗺️ Маршрут перехода</h4>
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Главная</a> » Текущая</li>
+                    <li><a href="{{ url_for('zoom') }}">Zoom</a></li>
+                    <li><a href="{{ url_for('games') }}">Игры</a></li>
+                    <li><a href="{{ url_for('news') }}">Новости</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 Жизнь на дистанте. Все права защищены. <strong>Главная мысль:</strong> <em>дистант изменил нас навсегда, но мы адаптировались</em>.
+        </div>
+    </footer>
+</div>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

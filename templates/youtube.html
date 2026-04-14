@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}YouTube - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1>▶️ YouTube-блогеры ковидной эпохи</h1>
+    <p style="margin-bottom:20px;">В 2020 году многие блогеры перешли на формат «домашних влогов» и прямых эфиров. Вот некоторые из них:</p>
+    <div class="youtube-grid">
+        <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+            <div class="image-placeholder"><span>🏠📹</span></div>
+            <p>Влог: «Как я переживаю карантин»</p>
+        </div>
+        <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+            <div class="image-placeholder"><span>🍳👨‍🍳</span></div>
+            <p>Готовим дома: рецепты от блогера</p>
+        </div>
+        <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+            <div class="image-placeholder"><span>💪🏠</span></div>
+            <p>Тренировки дома без инвентаря</p>
+        </div>
+        <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')">
+            <div class="image-placeholder"><span>🎮📺</span></div>
+            <p>Стримы Among Us с друзьями</p>
+        </div>
+    </div>
+    <p class="note"><i>При клике на обложку открывается видео на YouTube (внешняя ссылка). В демо-версии ведёт на классический ролик.</i></p>
+    <div class="back-link"><a href="{{ url_for('home') }}">↑ На главную</a></div>
+</div>
+{% endblock %}

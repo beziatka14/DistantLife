@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}The Last of Us Part II - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="content-block">
+        <div class="row">
+            <div class="col">
+                <h2 style="display: flex; align-items: center; gap: 10px;">
+                    <div class="icon-emoji" style="font-size: 2.5rem;">🧟</div>
+                    The Last of Us Part II
+                </h2>
+                <p><strong>The Last of Us Part II</strong> — постапокалиптический экшен от Naughty Dog, вышедший <strong>19 июня 2020 года</strong> эксклюзивно для PlayStation 4. Игра стала <em>самой обсуждаемой в разгар пандемии</em>.</p>
+                <p>Несмотря на утечки сюжета и споры среди фанатов, игра побила рекорды продаж: <strong>более 4 миллионов копий за первые 3 дня</strong>. Мрачная история о мести и прощении резонировала с настроением изолированного мира.</p>
+                <p><strong>Главная мысль:</strong> <i>даже в тёмные времена искусство провоцирует важные дискуссии о человечности</i>.</p>
+                <p>Во время локдауна игра стала спасением для многих — прохождение занимало 25-30 часов, позволяя полностью погрузиться в другой мир.</p>
+            </div>
+            <div class="col">
+                <div class="image-placeholder">
+                    <div class="icon-emoji" style="font-size: 8rem;">🧟‍♀️🏹</div>
+                    <p style="color: #ccc; margin-top: 20px;">The Last of Us Part II</p>
+                </div>
+                <div class="image-caption"><i>Элли в постапокалиптическом Сиэтле</i></div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;">🏆 Рекорды и достижения</h3>
+        <table>
+            <tr><th>Показатель</th><th>Значение</th></tr>
+            <tr><td>Продажи за первые 3 дня</td><td>4+ миллиона копий</td></tr>
+            <tr><td>Награды The Game Awards 2020</td><td>7 побед (включая «Игра года»)</td></tr>
+            <tr><td>Рейтинг Metacritic</td><td>93/100</td></tr>
+            <tr><td>Время полного прохождения</td><td>25-30 часов</td></tr>
+        </table>
+
+        <h3 style="margin-top: 30px;">🎭 Влияние пандемии</h3>
+        <ul>
+            <li><strong>Цифровые продажи</strong> — рекордные показатели из-за закрытых магазинов</li>
+            <li><strong>Стримы и летсплеи</strong> — миллионы зрителей на Twitch и YouTube</li>
+            <li><strong>Обсуждения в соцсетях</strong> — игра стала главной темой лета 2020</li>
+        </ul>
+
+        <p style="margin-top: 25px;"><a href="{{ url_for('games') }}" style="color:#2d8cff; text-decoration: none;">← Назад к списку игр</a></p>
+    </div>
+</div>
+{% endblock %}

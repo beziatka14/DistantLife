@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Phasmophobia - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="content-block">
+        <div class="row">
+            <div class="col">
+                <h2 style="display: flex; align-items: center; gap: 10px;">
+                    <img src="{{ url_for('static', filename='images/games/phasmophobia.png') }}" alt="Phasmophobia" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px;">
+                    Phasmophobia
+                </h2>
+                <p><strong>Phasmophobia</strong> — кооперативный хоррор от Kinetic Games, вышедший в ранний доступ в сентябре 2020 года. Игра стала <em>абсолютным феноменом Twitch и YouTube</em> именно в разгар пандемии.</p>
+                <p>Геймплей строится вокруг команды из 4 человек, исследующих локации с призраками. Игроки используют настоящее оборудование для охоты за привидениями: EMF-ридеры, термометры, лазерные проекторы и спиритические доски.</p>
+                <p><strong>Главная мысль:</strong> <i>изоляция усилила тягу к совместным переживаниям и эмоциям. Совместный страх сближает даже на расстоянии</i>.</p>
+                <p>Стримеры собирали миллионы просмотров, а друзья по видеосвязи вместе кричали от страха. Пик онлайна в Steam превысил <strong>110 000 игроков</strong> одновременно.</p>
+            </div>
+            <div class="col">
+                <div class="image-placeholder">
+                    <img src="{{ url_for('static', filename='images/games/phasmophobia_gameplay.png') }}" alt="Phasmophobia Gameplay" style="width: 100%; max-width: 500px; height: auto; border-radius: 12px;">
+                    <p style="color: #ccc; margin-top: 15px;">Охота на призрака в Phasmophobia</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;">📊 Статистика популярности (2020)</h3>
+        <table>
+            <tr><th>Месяц</th><th>Средний онлайн Steam</th><th>Зрители Twitch</th></tr>
+            <tr><td>Сентябрь</td><td>45 000</td><td>150 000</td></tr>
+            <tr><td>Октябрь</td><td>85 000</td><td>300 000</td></tr>
+            <tr><td>Ноябрь</td><td>110 000</td><td>250 000</td></tr>
+            <tr><td>Декабрь</td><td>95 000</td><td>200 000</td></tr>
+        </table>
+
+        <h3 style="margin-top: 30px;">👻 Почему игра стала хитом карантина</h3>
+        <ul>
+            <li><strong>Распознавание голоса</strong> — призрак слышит ваш микрофон, создавая полное погружение</li>
+            <li><strong>VR-поддержка</strong> — возможность играть в виртуальной реальности</li>
+            <li><strong>Разные типы призраков</strong> — 12 видов с уникальным поведением</li>
+            <li><strong>Командная работа</strong> — выжить можно только сообща</li>
+        </ul>
+
+        <p style="margin-top: 25px;"><a href="{{ url_for('games') }}" style="color:#2d8cff; text-decoration: none;">← Назад к списку игр</a></p>
+    </div>
+</div>
+{% endblock %}

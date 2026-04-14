@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Доставка - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1 style="display: flex; align-items: center; gap: 10px;">
+        <img src="{{ url_for('static', filename='images/yandex_eda.png') }}"
+             alt="Доставка"
+             class="icon-img"
+             width="40px"
+             height="40px">
+        <span>Взлёт популярности доставок</span>
+    </h1>
+    <div class="content-block">
+        <div class="row">
+            <div class="col">
+                <p><strong>Доставка еды стала настоящим спасением в локдаун.</strong> Сервисы вроде Яндекс.Еды и Delivery Club увеличили обороты в несколько раз. Рестораны, которые раньше никогда не занимались доставкой, экстренно подключались к агрегаторам.</p>
+                <p>В 2020 году количество заказов в Яндекс.Еде выросло на <strong>более чем 200%</strong> по сравнению с предыдущим годом. Курьеры на велосипедах и самокатах стали неотъемлемой частью городского пейзажа.</p>
+                <p><strong>Главная мысль:</strong> <em>бесконтактная доставка — это новая норма, которая останется с нами надолго</em>.</p>
+
+                <h3 style="margin-top:20px;">📋 Что чаще всего заказывали в 2020:</h3>
+                <ul>
+                    <li><strong>Пицца</strong> — классика доставки</li>
+                    <li><strong>Роллы и суши</strong> — удобно есть за просмотром сериала</li>
+                    <li><strong>Бургеры и картошка фри</strong> — comfort food</li>
+                    <li><strong>Десерты и кофе</strong> — маленькие радости на удалёнке</li>
+                </ul>
+            </div>
+            <div class="col">
+                <div class="image-placeholder">
+                    <img src="{{ url_for('static', filename='images/OIP.jpg') }}" width="450px" height="350px" alt="Курьер Яндекс.Еды">
+                </div>
+                <div class="image-caption">Бесконтактная доставка — стандарт 2020</div>
+                <div class="image-placeholder" style="margin-top:20px;">
+                    <img src="{{ url_for('static', filename='images/Dostavka-edy-kak-biznes-2.jpg') }}" width="450px" height="350px" alt="Заказ у двери">
+                </div>
+            </div>
+        </div>
+        <table style="margin-top:25px;">
+            <tr><th>Период 2020</th><th>Рост заказов (г/г)</th><th>Новые рестораны</th></tr>
+            <tr><td>Март-Апрель</td><td>+150%</td><td>+300% подключений</td></tr>
+            <tr><td>Май-Август</td><td>+200%</td><td>+500% новых партнёров</td></tr>
+            <tr><td>Сентябрь-Декабрь</td><td>+250%</td><td>Рекордное число курьеров</td></tr>
+        </table>
+    </div>
+    <div class="back-link"><a href="{{ url_for('home') }}">↑ На главную</a></div>
+</div>
+{% endblock %}

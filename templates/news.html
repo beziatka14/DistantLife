@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Новости - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1>📰 Новости ковидного времени</h1>
+
+    <div class="news-item">
+        <div class="icon-emoji">🦠</div>
+        <div>
+            <h3>Март 2020: ВОЗ объявила пандемию</h3>
+            <p><strong>11 марта 2020 года</strong> Всемирная организация здравоохранения официально объявила пандемию COVID-19. Школы по всему миру начали закрываться, вводится <em>режим самоизоляции</em>. Люди скупают гречку и туалетную бумагу, улицы городов пустеют.</p>
+            <div class="image-placeholder" style="padding:20px;">
+                <img src="{{ url_for('static', filename='images/COVID-19.jpg') }}" width="500px" height="300px" alt="COVID-19">
+            </div>
+        </div>
+    </div>
+
+    <div class="news-item">
+        <div class="icon-emoji">💉</div>
+        <div>
+            <h3>Август 2020: Регистрация «Спутник V»</h3>
+            <p>Россия первой в мире регистрирует вакцину от коронавируса — <strong>«Спутник V»</strong>. Новость вызывает <i>бурные обсуждения в мировом сообществе</i>. Школьники и студенты с надеждой ждут возвращения к нормальной жизни.</p>
+            <div class="image-placeholder" style="padding:20px;">
+                <img src="{{ url_for('static', filename='images/1200_sputnik-5-russia.jpg') }}" width="500px" height="300px" alt="Спутник V">
+            </div>
+        </div>
+    </div>
+
+    <div class="news-item">
+        <div class="icon-emoji">🏫</div>
+        <div>
+            <h3>Сентябрь 2020: Удалёнка навсегда?</h3>
+            <p>Начало учебного года в гибридном формате. Многие компании заявляют о продлении удалённой работы на неопределённый срок. <strong>Главная мысль:</strong> <i>мир уже никогда не будет прежним</i>, дистанционные технологии прочно вошли в жизнь.</p>
+            <div class="image-placeholder" style="padding:20px;">
+                <img src="{{ url_for('static', filename='images/healthy-home-office-aspectos-psicologicos-del-trabajo-remoto-en-cuarentena-workana-blog-min.jpg') }}" width="500px" height="300px" alt="Удалённая работа">
+            </div>
+        </div>
+    </div>
+
+    <div class="back-link"><a href="{{ url_for('home') }}">↑ На главную</a></div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Animal Crossing: New Horizons - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="content-block">
+        <div class="row">
+            <div class="col">
+                <h2 style="display: flex; align-items: center; gap: 10px;">
+                    <div class="icon-emoji" style="font-size: 2.5rem;">🏝️</div>
+                    Animal Crossing: New Horizons
+                </h2>
+                <p><strong>Animal Crossing: New Horizons</strong> — симулятор жизни от Nintendo, вышедший <strong>20 марта 2020 года</strong> на Nintendo Switch. Игра стала <em>идеальным побегом от реальности в начале пандемии</em>.</p>
+                <p>За первые 6 недель было продано <strong>более 13 миллионов копий</strong>, что сделало её самой быстро продаваемой игрой на Switch. Островная жизнь с милыми животными стала терапией для миллионов.</p>
+                <p><strong>Главная мысль:</strong> <i>в трудные времена людям нужны простые радости, рутина и социальные связи, даже виртуальные</i>.</p>
+                <p>Игроки праздновали дни рождения, свадьбы и даже проводили выпускные на своих виртуальных островах.</p>
+            </div>
+            <div class="col">
+                <div class="image-placeholder">
+                    <div class="icon-emoji" style="font-size: 8rem;">🏝️🦝</div>
+                    <p style="color: #ccc; margin-top: 20px;">Animal Crossing: New Horizons</p>
+                </div>
+                <div class="image-caption"><i>Ваш личный райский остров</i></div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 30px;">📈 Феноменальный успех</h3>
+        <table>
+            <tr><th>Период</th><th>Продажи</th></tr>
+            <tr><td>Первые 3 дня (Япония)</td><td>1,88 млн физических копий</td></tr>
+            <tr><td>Первые 6 недель (мир)</td><td>13,41 млн копий</td></tr>
+            <tr><td>К концу 2020</td><td>31,18 млн копий</td></tr>
+            <tr><td>Общие продажи (2024)</td><td>45+ млн копий</td></tr>
+        </table>
+
+        <h3 style="margin-top: 30px;">🌍 Культурный феномен</h3>
+        <ul>
+            <li><strong>Виртуальные мероприятия</strong> — свадьбы, дни рождения, выпускные</li>
+            <li><strong>Рынок репы</strong> — своя экономика и биржа в игре</li>
+            <li><strong>Знаменитости</strong> — Элайджа Вуд, Бри Ларсон и другие посещали острова фанатов</li>
+            <li><strong>Ментальное здоровье</strong> — психологи рекомендовали игру для снятия стресса</li>
+            <li><strong>Социальная платформа</strong> — возможность общаться с друзьями во время изоляции</li>
+        </ul>
+
+        <p style="margin-top: 25px;"><a href="{{ url_for('games') }}" style="color:#2d8cff; text-decoration: none;">← Назад к списку игр</a></p>
+    </div>
+</div>
+{% endblock %}

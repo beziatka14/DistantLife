@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1>👋 Добро пожаловать на дистант</h1>
+    <div class="desktop">
+        <a href="{{ url_for('zoom') }}" class="app-icon">
+            <img src="{{ url_for('static', filename='images/zoom.png') }}" alt="Zoom" class="icon-img">
+            <span>Zoom</span>
+        </a>
+        <a href="{{ url_for('games') }}" class="app-icon">
+            <div class="icon-emoji">🎮</div>
+            <span>Игры</span>
+        </a>
+        <a href="{{ url_for('news') }}" class="app-icon">
+            <div class="icon-emoji">📰</div>
+            <span>Новости</span>
+        </a>
+        <a href="{{ url_for('youtube') }}" class="app-icon">
+            <img src="{{ url_for('static', filename='images/youtube.png') }}" alt="YouTube" class="icon-img">
+            <span>YouTube</span>
+        </a>
+        <a href="{{ url_for('delivery') }}" class="app-icon">
+            <img src="{{ url_for('static', filename='images/yandex_eda.png') }}" alt="Доставка" class="icon-img">
+            <span>Доставка</span>
+        </a>
+        <a href="{{ url_for('music') }}" class="app-icon">
+            <div class="icon-emoji">🎵</div>
+            <span>Музыка</span>
+        </a>
+        <a href="{{ url_for('gallery') }}" class="app-icon">
+            <div class="icon-emoji">🖼️</div>
+            <span>Галерея</span>
+        </a>
+    </div>
+    <p class="note"><i>Кликните на иконку, чтобы открыть приложение.</i></p>
+
+    <h2>📊 Статистика дистанта 2020</h2>
+    <table>
+        <tr><th>Показатель</th><th>Март 2020</th><th>Сентябрь 2020</th></tr>
+        <tr><td>Пользователи Zoom (млн/день)</td><td>10</td><td>300</td></tr>
+        <tr><td>Заказы доставки еды (рост)</td><td>+20%</td><td>+150%</td></tr>
+        <tr><td>Просмотры YouTube (млрд/день)</td><td>1.5</td><td>2.8</td></tr>
+    </table>
+</div>
+{% endblock %}

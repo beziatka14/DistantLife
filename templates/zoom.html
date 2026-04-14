@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Zoom - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1 style="display: flex; align-items: center; gap: 10px;">
+        <img src="{{ url_for('static', filename='images/zoom.png') }}"
+             alt="Zoom"
+             class="icon-img"
+             width="40px"
+             height="40px">
+        <span>Zoom и школьники на дистанте</span>
+    </h1>
+    <div class="content-block">
+        <div class="row">
+            <div class="col">
+                <p><strong>Zoom</strong> стал <em>главным окном в мир учебы</em> для миллионов школьников в 2020 году. До пандемии о нём знали в основном бизнесмены, но <i>локдаун превратил сервис в школьную парту</i>. <strong>В марте 2020</strong> ежедневная аудитория выросла с 10 до <strong>300 миллионов участников</strong>.</p>
+                <p>Школьники проводили по 5-6 часов в Zoom, часто с выключенными камерами. Появились мемы про «рябь на фоне» и «сломанный микрофон». Несмотря на усталость, Zoom помог сохранить учебный процесс.</p>
+                <p><strong>Главная мысль:</strong> <em>технологии позволили не прерывать образование в критический момент</em>.</p>
+            </div>
+            <div class="col">
+                <div class="image-placeholder">
+                    <img src="{{ url_for('static', filename='images/ddab2818a768ea1081d12c948d5d5a54.jpg') }}" width="450px" height="350px" alt="Урок в Zoom">
+                </div>
+                <div class="image-caption"><i>Урок в Zoom</i></div>
+            </div>
+        </div>
+    </div>
+    <h2>📅 Хронология влияния на школьников</h2>
+    <table>
+        <tr><th>Период</th><th>Событие</th><th>Влияние</th></tr>
+        <tr><td>Март 2020</td><td>Массовый переход на удалёнку</td><td>Взрывной рост установок Zoom</td></tr>
+        <tr><td>Апрель 2020</td><td>Проблемы с «зумбомбингом»</td><td>Введение паролей и залов ожидания</td></tr>
+        <tr><td>Сентябрь 2020</td><td>Начало учебного года</td><td>Гибридное обучение: часть дома, часть в школе</td></tr>
+        <tr><td>Декабрь 2020</td><td>Вторая волна пандемии</td><td>Полный возврат на дистант</td></tr>
+    </table>
+    <div class="back-link"><a href="{{ url_for('home') }}">↑ Наверх (на главную)</a></div>
+</div>
+{% endblock %}

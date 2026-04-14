@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Галерея мемов - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1>🖼️ Мемы карантина 2020</h1>
+    <div class="gallery">
+        <figure>
+            <div class="image-placeholder">
+                <img src="{{ url_for('static', filename='images/908e0914cb3a916c6ece4ef3177e7289.jpg') }}" width="150px" height="150px" alt="Чикибамбони">
+            </div>
+            <figcaption>Чикибамбони</figcaption>
+        </figure>
+        <figure>
+            <div class="image-placeholder">
+                <img src="{{ url_for('static', filename='images/e57d2bf032befade9b7848d495330a2b.jpg') }}" width="150px" height="150px" alt="Каменное лицо">
+            </div>
+            <figcaption>Каменное лицо</figcaption>
+        </figure>
+        <figure>
+            <div class="image-placeholder">
+                <img src="{{ url_for('static', filename='images/7b8d43124860dc77514f38cd04987775.jpg') }}" width="150px" height="150px" alt="Анонимусы">
+            </div>
+            <figcaption>Анонимусы</figcaption>
+        </figure>
+        <figure>
+            <div class="image-placeholder">
+                <img src="{{ url_for('static', filename='images/OIP-_1_.jpg') }}" width="150px" height="150px" alt="Розовый гусь">
+            </div>
+            <figcaption>Розовый гусь</figcaption>
+        </figure>
+    </div>
+    <div class="back-link"><a href="{{ url_for('home') }}">↑ На главную</a></div>
+</div>
+{% endblock %}

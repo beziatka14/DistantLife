@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Among Us - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="content-block">
+        <div class="row">
+            <div class="col">
+                <h2 style="display: flex; align-items: center; gap: 10px;">
+                    <img src="{{ url_for('static', filename='images/games/amongus.png') }}" alt="Among Us" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px;">
+                    Among Us
+                </h2>
+                <p><strong>Among Us</strong> — игра от InnerSloth, вышедшая ещё в 2018, но ставшая <em>мировым феноменом именно в 2020 году</em> благодаря стримерам и локдауну.</p>
+                <p>4-15 игроков на космическом корабле пытаются выполнить задания, пока один или несколько предателей саботируют миссию и убивают членов экипажа. Игра о предательстве и дедукции идеально подошла для онлайн-вечеринок.</p>
+                <p><strong>Главная мысль:</strong> <i>социальное взаимодействие стало главной валютой карантина. Обсуждения на собраниях заменили реальные встречи с друзьями</i>.</p>
+                <p>В пике в ноябре 2020 года одновременно играло <strong>более 3 миллионов человек</strong> на всех платформах. Мемы про «sus» и «красный — предатель» заполонили интернет.</p>
+            </div>
+            <div class="col">
+                <div class="image-placeholder">
+                    <img src="{{ url_for('static', filename='images/games/amongus_gameplay.png') }}" alt="Among Us Gameplay" style="width: 100%; max-width: 500px; height: auto; border-radius: 12px;">
+                    <p style="color: #ccc; margin-top: 15px;">Экстренное собрание в Among Us</p>
+                </div>
+            </div>
+        </div>
+        
+        <h3 style="margin-top: 30px;">📈 Хронология популярности</h3>
+        <table>
+            <tr><th>Период</th><th>Событие</th><th>Влияние</th></tr>
+            <tr><td>Июль 2020</td><td>Популярные стримеры начали играть</td><td>Рост зрителей на Twitch</td></tr>
+            <tr><td>Сентябрь 2020</td><td>100 млн скачиваний на мобильных</td><td>Взрывной рост аудитории</td></tr>
+            <tr><td>Октябрь 2020</td><td>Американские политики играют на стриме</td><td>Мейнстрим признание</td></tr>
+            <tr><td>Ноябрь 2020</td><td>Пик популярности</td><td>3+ млн одновременных игроков</td></tr>
+        </table>
+        
+        <h3 style="margin-top: 30px;">🚀 Причины успеха на карантине</h3>
+        <ul>
+            <li><strong>Доступность</strong> — бесплатно на мобильных, дёшево на ПК</li>
+            <li><strong>Социальная игра</strong> — общение важнее геймплея</li>
+            <li><strong>Простота</strong> — понятные правила, низкий порог входа</li>
+            <li><strong>Настройка правил</strong> — можно менять роли, задания, скорость</li>
+            <li><strong>Кроссплатформа</strong> — играют вместе на ПК, телефонах, консолях</li>
+        </ul>
+        
+        <p style="margin-top: 25px;"><a href="{{ url_for('games') }}" style="color:#2d8cff; text-decoration: none;">← Назад к списку игр</a></p>
+    </div>
+</div>
+{% endblock %}

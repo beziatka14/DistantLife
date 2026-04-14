@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Игры - Жизнь на дистанте{% endblock %}
+
+{% block content %}
+<div class="page">
+    <h1>🎮 Игры, покорившие карантин</h1>
+    <p style="margin-bottom:20px;">В 2020 году, когда мир заперся по домам, несколько игр стали настоящими феноменами, объединяя друзей на расстоянии.</p>
+
+    <div class="games-grid">
+        <a href="{{ url_for('game_amongus') }}" class="game-card">
+            <img src="{{ url_for('static', filename='images/games/amongus.png') }}" alt="Among Us" class="game-image">
+            <h3>Among Us</h3>
+            <p class="game-description">Социальная дедукция</p>
+        </a>
+
+        <a href="{{ url_for('game_tlou2') }}" class="game-card">
+            <img src="{{ url_for('static', filename='images/games/tlou2.png') }}" alt="The Last of Us Part II" class="game-image">
+            <h3>The Last of Us Part II</h3>
+            <p class="game-description">Постапокалиптический экшен</p>
+        </a>
+
+        <a href="{{ url_for('game_cyberpunk') }}" class="game-card">
+            <img src="{{ url_for('static', filename='images/games/cyberpunk2077.png') }}" alt="Cyberpunk 2077" class="game-image">
+            <h3>Cyberpunk 2077</h3>
+            <p class="game-description">Футуристическая RPG</p>
+        </a>
+
+        <a href="{{ url_for('game_phasmo') }}" class="game-card">
+            <img src="{{ url_for('static', filename='images/games/phasmophobia.png') }}" alt="Phasmophobia" class="game-image">
+            <h3>Phasmophobia</h3>
+            <p class="game-description">Кооперативный хоррор</p>
+        </a>
+
+        <a href="{{ url_for('game_fallguys') }}" class="game-card">
+            <img src="{{ url_for('static', filename='images/games/fallguys.png') }}" alt="Fall Guys" class="game-image">
+            <h3>Fall Guys</h3>
+            <p class="game-description">Королевская битва</p>
+        </a>
+
+        <a href="{{ url_for('game_animalcrossing') }}" class="game-card">
+            <img src="{{ url_for('static', filename='images/games/animalcrossing.png') }}" alt="Animal Crossing" class="game-image">
+            <h3>Animal Crossing</h3>
+            <p class="game-description">Симулятор жизни</p>
+        </a>
+    </div>
+    <p class="note"><i>Кликните на карточку игры, чтобы узнать подробности о её успехе во время ковида.</i></p>
+</div>
+{% endblock %}
