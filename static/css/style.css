@@ -76,6 +76,7 @@ nav ul li a.active {
 }
 
 /* Хлебные крошки */
+/* Хлебные крошки */
 .breadcrumbs {
     margin: 15px 20px;
     color: #aaa;
@@ -86,10 +87,20 @@ nav ul li a.active {
     color: #2d8cff;
     cursor: pointer;
     text-decoration: none;
+    transition: color 0.2s;
 }
 
 .breadcrumbs a:hover {
+    color: #5aa5ff;
     text-decoration: underline;
+}
+
+/* Текущая страница (последняя ссылка) - белая без подчеркивания */
+.breadcrumbs a.current-page {
+    color: #eee;
+    pointer-events: none;
+    text-decoration: none;
+    cursor: default;
 }
 
 /* Страницы */

@@ -64,30 +64,33 @@ def games():
 @app.route('/games/phasmophobia')
 def game_phasmo():
     return render_template('game_phasmo.html',
-                         page_id='games',
-                         page_name=f"Игры » {PAGE_NAMES['game_phasmo']}",
-                         nav_items=NAV_ITEMS)
+                           page_id='games',
+                           game_page=True,
+                           page_name=f"Игры » {PAGE_NAMES['game_phasmo']}",
+                           nav_items=NAV_ITEMS)
 
 
 @app.route('/games/fallguys')
 def game_fallguys():
     return render_template('game_fallguys.html',
-                         page_id='games',
-                         page_name=f"Игры » {PAGE_NAMES['game_fallguys']}",
-                         nav_items=NAV_ITEMS)
+                           page_id='games',
+                           game_page=True,
+                           page_name=f"Игры » {PAGE_NAMES['game_fallguys']}",
+                           nav_items=NAV_ITEMS)
 
 
 @app.route('/games/amongus')
 def game_amongus():
     return render_template('game_amongus.html',
                          page_id='games',
+                         game_page=True,
                          page_name=f"Игры » {PAGE_NAMES['game_amongus']}",
                          nav_items=NAV_ITEMS)
-
 @app.route('/games/the-last-of-us-2')
 def game_tlou2():
     return render_template('game_tlou2.html',
                          page_id='games',
+                         game_page=True,
                          page_name=f"Игры » {PAGE_NAMES['game_tlou2']}",
                          nav_items=NAV_ITEMS)
 
@@ -96,6 +99,7 @@ def game_tlou2():
 def game_cyberpunk():
     return render_template('game_cyberpunk.html',
                          page_id='games',
+                         game_page=True,
                          page_name=f"Игры » {PAGE_NAMES['game_cyberpunk']}",
                          nav_items=NAV_ITEMS)
 
@@ -104,6 +108,7 @@ def game_cyberpunk():
 def game_animalcrossing():
     return render_template('game_animalcrossing.html',
                          page_id='games',
+                         game_page=True,
                          page_name=f"Игры » {PAGE_NAMES['game_animalcrossing']}",
                          nav_items=NAV_ITEMS)
 

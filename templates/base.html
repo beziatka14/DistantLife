@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Жизнь на дистанте{% endblock %}</title>
-     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 <div class="app">
@@ -29,7 +29,28 @@
 
     <!-- ХЛЕБНЫЕ КРОШКИ -->
     <div class="breadcrumbs">
-        <a href="{{ url_for('home') }}">Главная</a> » <span>{{ page_name }}</span>
+        <a href="{{ url_for('home') }}">Главная</a>
+
+        {% if game_page %}
+            » <a href="{{ url_for('games') }}">Игры</a>
+            » <a href="{{ request.url }}" class="current-page">{{ game_name }}</a>
+        {% elif page_id == 'games' %}
+            » <a href="{{ url_for('games') }}" class="current-page">Игры</a>
+        {% elif page_id == 'zoom' %}
+            » <a href="{{ url_for('zoom') }}" class="current-page">Zoom</a>
+        {% elif page_id == 'news' %}
+            » <a href="{{ url_for('news') }}" class="current-page">Новости</a>
+        {% elif page_id == 'delivery' %}
+            » <a href="{{ url_for('delivery') }}" class="current-page">Доставка</a>
+        {% elif page_id == 'music' %}
+            » <a href="{{ url_for('music') }}" class="current-page">Музыка</a>
+        {% elif page_id == 'gallery' %}
+            » <a href="{{ url_for('gallery') }}" class="current-page">Галерея</a>
+        {% elif page_id == 'youtube' %}
+            » <a href="{{ url_for('youtube') }}" class="current-page">YouTube</a>
+        {% elif page_id != 'home' %}
+            » <a href="{{ request.url }}" class="current-page">{{ page_name }}</a>
+        {% endif %}
     </div>
 
     <!-- КОНТЕНТ СТРАНИЦЫ -->
@@ -58,7 +79,7 @@
             <div class="footer-section">
                 <h4>🗺️ Маршрут перехода</h4>
                 <ul>
-                    <li><a href="{{ url_for('home') }}">Главная</a> » Текущая</li>
+                    <li><a href="{{ url_for('home') }}">Главная</a></li>
                     <li><a href="{{ url_for('zoom') }}">Zoom</a></li>
                     <li><a href="{{ url_for('games') }}">Игры</a></li>
                     <li><a href="{{ url_for('news') }}">Новости</a></li>
